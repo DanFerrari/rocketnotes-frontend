@@ -3,14 +3,19 @@ require("express-async-errors");
 const migrationsRun = require("./database/sqlite/migrations");
 
 const AppError = require("./utils/AppError");
-const express = require("express");
 
+const uploadConfig = require("./configs/upload");
+
+const express = require("express");
 const routes = require("./routes");
 
 migrationsRun();
 
 const app = express();
 app.use(express.json());// Aqui estamos determinando qual será o padrão que será recebida as informações do Body
+
+app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
+
 
 app.use(routes);
 

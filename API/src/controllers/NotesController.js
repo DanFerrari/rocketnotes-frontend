@@ -11,6 +11,15 @@ const note_id = await knex("notes").insert({
   user_id
 });
 
+const linksInsert = links.map(link => {
+  return {
+    note_id,
+    url: link
+  }
+});
+
+await knex("links").insert(linksInsert);
+
 const tagsInsert = tags.map(name => {
   return {
     note_id,
@@ -20,15 +29,8 @@ const tagsInsert = tags.map(name => {
 });
 
 await knex("tags").insert(tagsInsert);
-12
-const linksInsert = links.map(link => {
-  return {
-    note_id,
-    url: link
-  }
-});
 
-await knex("links").insert(linksInsert);
+
 
 
 return response.json();

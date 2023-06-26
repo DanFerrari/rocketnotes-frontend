@@ -2,7 +2,7 @@ const { Router } = require("express");
 
 const NotesController = require("../controllers/NotesController");
 
-const ensureAuthenticated =  require("../middlewares/ensureAuthenticated");
+const ensureAuthenticated =require("../middlewares/ensureAuthenticated");
 const notesRoutes = Router();
 
 const notesController = new NotesController();
@@ -27,5 +27,5 @@ notesRoutes.use(ensureAuthenticated);//adiciona o middleware de autenticação e
 notesRoutes.post("/", notesController.create);
 notesRoutes.get("/:id",notesController.show);
 notesRoutes.delete("/:id",notesController.delete);
-notesRoutes.get("/",  notesController.index);
+notesRoutes.get("/",notesController.index);
   module.exports = notesRoutes; //exportando as rotas para que o arquivo possa ser usado por qualquer um
