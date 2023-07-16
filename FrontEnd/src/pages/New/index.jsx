@@ -6,7 +6,7 @@ import { Section } from '../../components/Section';
 import { Button } from '../../components/Button';
 import { Header} from '../../components/Header';
 import { Input } from '../../components/Input';
-import { Link } from 'react-router-dom';
+import { ButtonText } from '../../components/ButtonText';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -34,6 +34,12 @@ const [newTag, setNewTag] = useState("");
 
 const navigate = useNavigate();
 
+
+function handleBack(){
+  navigate(-1);
+
+}
+
 //links
 function handleAddLink(){
   setLinks(prevState => 
@@ -56,6 +62,23 @@ function handleRemoveTag(deleted){
 }
 
 async function handleNewNote(){
+
+//VALUDANDO OS CAMPOS DE CADASTRO.
+  if(!title){
+    return alert("Digite o título da nota")
+  }
+
+  if(newLink){
+    return alert("Você deixou um link no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio.");
+  }
+
+  if(newTag){
+    return alert("Você deixou uma tag no campo para adicionar, mas não clicou em adicionar. Clique para adicionar ou deixe o campo vazio.");
+  }
+
+
+
+
   await  api.post("/notes",{
     title,
     description,
@@ -64,7 +87,7 @@ async function handleNewNote(){
   });
 
   alert("Nota Cadastrada com sucesso");
-  navigate("/");
+  navigate(-1);
 
 }
 
@@ -78,7 +101,10 @@ return (
  <Form>
 <header>
   <h1>Criar nota</h1>
-  <Link to="/">voltar</Link>
+  <ButtonText
+    title="Voltar"
+    onClick={handleBack}>
+  </ButtonText>
     
 </header>
 
