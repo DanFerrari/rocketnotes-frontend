@@ -21,7 +21,7 @@ This is a simple notepad application built using **Express**, **Node.js**, **Jav
 
 1. Clone the repository:
 
-```git clone ``` [<repository_url>](https://github.com/DanFerrari/rocketnotes-frontend.git)
+```git clone https://github.com/DanFerrari/rocketnotes-frontend.git```
 
 2. Install the dependencies for the backend:
 
